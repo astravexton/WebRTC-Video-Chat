@@ -1,0 +1,149 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #444444;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    overflow: hidden;
+}
+
+.container {
+    display: grid; /** ffs, always forget this! **/
+    grid-template-columns: 1fr 1fr; /** See: https://alligator.io/css/css-grid-layout-fr-unit/ **/
+    grid-template-rows: 1fr 75px;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+}
+
+    .container > .video {
+        background: transparent;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+        .container > .video:nth-of-type(1) {
+            grid-column: 1;
+            grid-row: 1;
+            padding-right: 2.5px;
+        }
+
+        .container > .video:nth-of-type(2) {
+            grid-column: 2;
+            grid-row: 1;
+            padding-left: 2.5px;
+        }
+
+    .container > .controls {
+        font-size: 0;
+        /* padding: ?? */
+        grid-column-start: 1; /** This is how you span grid cells **/
+        grid-column-end: 3;
+        grid-row: 2;           
+    }
+
+        .container > .controls {
+            background-color: #111111;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            grid-template-rows: 1fr;
+        }
+
+            .container > .controls .button {
+                margin: 0;
+                border: 0;
+                border-radius: 5px;
+                background-color: #333333;
+                color: #dddddd;
+                cursor: pointer;
+                margin: 5px 2.5px;
+                font-size: 0;
+                box-sizing: border-box;
+                transition: 0.5s;
+            }
+
+                .container > .controls .button:first-of-type {
+                    margin-left: 5px;
+                }
+
+                .container > .controls .button:last-of-type {
+                    margin-right: 5px;
+                }
+
+                .container > .controls .button:hover {
+                    filter: brightness(125%);
+                }
+
+                .container > .controls .button:focus,
+                .container > .controls .button:active {
+                    filter: brightness(75%);
+                    outline: none;
+                }
+
+                .container > .controls .button.green {
+                    background-color: rgb(0, 156, 0);
+                    color: #111111;
+                }
+
+                .container > .controls .button.red {
+                    background-color: rgb(192, 0, 0);
+                    color: #eeeeee;
+                }
+
+                .container > .controls .button > .button-icon {
+                    display: none;
+                    color: transparent;
+                    font-size: 30px;
+                    line-height: 1;
+                    text-shadow: 0 0 0 #eeeeee;
+                }
+
+                .container > .controls .button > .button-text {
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 1;
+                }
+
+                    .container > .controls .button > .button-text.lg {
+                        font-size: 26px;
+                    }
+
+@media only screen and (max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 75px;
+    }
+
+        .container > .video {
+            padding-left: 5px !important; /** !important has valid uses -- this one of them **/
+            padding-right: 5px !important;
+        }
+
+            .container > .video:nth-of-type(1) {
+                grid-column: 1;
+                grid-row: 1;
+                padding-bottom: 2.5px;
+            }
+
+            .container > .video:nth-of-type(2) {
+                grid-column: 1;
+                grid-row: 2;
+                padding-top: 2.5px;
+            }
+
+            .container > .controls {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+                .container > .controls .button > .button-icon {
+                    display: unset;
+                }
+
+                .container > .controls .button > .button-text {
+                    display: none;
+                }
+}
